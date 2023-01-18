@@ -1,12 +1,15 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getRecipes } from '../../actions';
+import { filterRecipesByCreator, filterRecipesByDiet, getDiets, getRecipes, orderBy } from '../../actions';
 import { Card } from '../Card/Card';
 import { Paginate } from '../Paginate/Paginate';
+import { SearchBar } from '../SearchBar/SearchBar';
 
 export const Home = () => {
     const dispatch = useDispatch();
-    const allRecipes = useSelector( (state) => state.recipes );
+    const allRecipes = useSelector( ( state ) => state.recipes );
+    const allDiets = useSelector( ( state ) => state.diets ); 
+    const [sort, setSort] = useState( '' );
     const [loader, setLoader] = useState( true );
     const [currentPage, setCurrentPage] = useState( 1 );
     const recipesPerPage = 15;
@@ -20,8 +23,25 @@ export const Home = () => {
 
     useEffect(() => {
         dispatch( getRecipes() );
+        dispatch( getDiets() );
     }, [dispatch] );
     
+    const handleFilterDiets = ( e ) => {
+        dispatch( filterRecipesByDiet( e.target.value ) );
+        setCurrentPage( 1 );
+    }
+
+    const handleFilterByCreator = ( e ) => {
+        dispatch( filterRecipesByCreator( e.target.value ) );
+        setCurrentPage( 1 );
+    }
+
+    const handleSort = ( e ) => {
+        dispatch( orderBy( e.target.value ) );
+        setCurrentPage( 1 );
+        setSort( e.target.value );
+    }
+
     if( recipesOfActualPage.length > 0 && loader ) {
         setLoader( false );
     }
@@ -29,6 +49,36 @@ export const Home = () => {
   return (
     <>
         <div>Home</div>
+        <div>
+            <div>Order by:</div>
+            <select onChange={ e => handleSort( e ) }>
+                <option value='All' key='All' default>All</option>
+                <option value="Asc_name" key="Asc_name">Alphabetically (A-Z)</option>
+                <option value="Desc_name" key="Desc_name">Alphabetically (Z-A)</option>
+                <option value="Asc_healthScore" key="Asc_healthScore">Health Score (Lower-Higher)</option>
+                <option value="Desc_healthScore" key="Desc_healthScore">Health Score (Higher-Lower)</option>
+            </select>
+        </div>
+        <div>
+            <div>Filter by diet:</div>
+            <select onChange={ e => handleFilterDiets( e ) }>
+                <option value='All' key='All' default>All</option>
+                {
+                    allDiets?.map( diet => (
+                        <option value={ diet.name } key={ diet.id }>{ diet.name }</option>
+                    ))
+                }
+            </select>
+        </div>
+        <div>
+            <div>Filter by creator:</div>
+            <select onChange={ e => handleFilterByCreator( e ) }>
+                <option value='All' key='All'>All</option>
+                <option value='API_Created' key='API_Created'>API Created</option>
+                <option value='User_Created' key='User_Created'>User Created</option>
+            </select>
+        </div>
+        <SearchBar />
         {
             recipesOfActualPage.length > 0 && !loader ? (
                 recipesOfActualPage.map( recipe => (
