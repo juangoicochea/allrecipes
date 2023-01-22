@@ -18,7 +18,7 @@ module.exports = ( sequelize ) => {
       type: DataTypes.STRING
     },
     dishTypes: {
-      type: DataTypes.ARRAY(DataTypes.STRING),
+      type: DataTypes.ARRAY( DataTypes.STRING ),
       allowNull: false
     },
     summary: {

@@ -4,9 +4,9 @@ const { Recipe, Diet } = require('../db');
 
 const getApiRecipes = async () => {
     let recipesResults = [];
-    let response = await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&addRecipeInformation=true&number=100`);
+    let response = await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${ API_KEY }&addRecipeInformation=true&number=10`);
     const { results } = response.data;
-
+    
     if( results.length > 0 ) {
         const recipesReady = results.map( recipe => {
             return {
@@ -46,7 +46,7 @@ const getAllRecipes = async () => {
 }
 
 const getApiDiets = async () => {
-    let response = await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&addRecipeInformation=true&number=100`);
+    let response = await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${ API_KEY }&addRecipeInformation=true&number=10`);
     const { results } = response.data;
     let apiAllDiets = results.map( recipe => recipe.diets );
     apiAllDiets = apiAllDiets.flat( 1 );
@@ -62,39 +62,73 @@ const getApiDiets = async () => {
     return allDiets;
 }
 
-const postRecipe = async ( data ) => {
-    
-    let {
-        title,
-        image,
-        dishTypes,
-        summary,
-        healthScore,
-        weightWatcherSmartPoints,
-        steps,
-        diets,
-        created_db
-    } = data[0];
+const getRecipeDetail = async ( id ) => {
+    if( id.length > 7 && typeof id === 'string' ) {
+        const recipesDB = await Recipe.findAll({
+            include: {
+                model: Diet,
+                attributes: [ 'name' ],
+                through: {
+                    attributes: []
+                }
+            }
+        });
+        let recipeDb = await recipesDB.filter( recipe => recipe.dataValues.id === id );
+        return recipeDb[0].dataValues;
+    }
+    let response = await axios.get(`https://api.spoonacular.com/recipes/${ id }/information?apiKey=${ API_KEY }`);
+    const recipeApi = {
+        id: response.data.id,
+        title: response.data.title,
+        image: response.data.image,
+        dishTypes: response.data.dishTypes.map( type => type ),
+        summary: response.data.summary,
+        healthScore: response.data.healthScore,
+        weightWatcherSmartPoints: response.data.weightWatcherSmartPoints,
+        steps: response.data.steps,
+        diets: response.data.diets
+    }
+    return recipeApi;
+}
 
-    let recipeCreated = await Recipe.create({
-        title,
-        image,
-        dishTypes,
-        summary,
-        healthScore,
-        weightWatcherSmartPoints,
-        steps,
-        created_db
-    });
+const postRecipe = async ( data ) => { 
+    try {
+        let {
+            title,
+            image,
+            dishTypes,
+            summary,
+            healthScore,
+            weightWatcherSmartPoints,
+            steps,
+            diets,
+            created_db
+        } = data;
 
-    let recipeDietDb = await Diet.findAll({
-        where: { name: diets }
-    });
-    recipeCreated.addDiet( recipeDietDb );
+       let recipeCreated = await Recipe.create({
+            title,
+            image,
+            dishTypes,
+            summary,
+            healthScore,
+            weightWatcherSmartPoints,
+            steps,
+            created_db
+        }); 
+
+        let recipeDietDb = await Diet.findAll({
+            where: { name: diets }
+        });
+        recipeCreated.addDiet( recipeDietDb );
+
+    } catch (error) {
+        console.log( error );
+    }
 }
 
 module.exports = {
     getAllRecipes,
     getApiDiets,
-    postRecipe
+    postRecipe,
+    getRecipeDetail
 }

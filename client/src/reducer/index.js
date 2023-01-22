@@ -20,11 +20,26 @@ export const rootReducer = ( state=initialState, action ) => {
             }
         case 'FILTER_BY_DIET':
             const allRecipes = state.recipesBackup;
-            const recipesFiltered = action.payload === 'All' ? allRecipes : allRecipes?.filter( recipe => recipe.diets.includes( action.payload ) );
+            const recipesFiltered = action.payload === 'All' ? allRecipes : 
+                allRecipes?.filter( recipe => typeof recipe.diets[0] === 'object' ? 
+                recipe.diets.find( e => e.name === action.payload ) :
+                recipe.diets.includes( action.payload ) );
             return {
                 ...state,
                 recipes: recipesFiltered,
                 filtered: recipesFiltered
+            }
+        case 'FILTER_BY_CREATOR':
+            const recipesAll = state.recipesBackup;
+
+            const filteredRecipes = action.payload === 'All' ? recipesAll :
+                action.payload === 'API_Created' ? 
+                recipesAll?.filter( recipe => !recipe.created_db ) :
+                recipesAll?.filter( recipe => recipe.created_db );
+            return {
+                ...state,
+                recipes: filteredRecipes,
+                filtered: filteredRecipes
             }
         case 'ORDER_BY':
             let loadedRecipes = state.filtered;

@@ -57,3 +57,10 @@ export const searchByName = ( payload ) => {
         }
     }
 }
+
+export const postRecipe = ( payload ) => {
+    return async function() {
+        const json = await axios.post( 'http://localhost:3001/recipes', payload );
+        return json;
+    }
+}
