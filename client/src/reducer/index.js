@@ -2,6 +2,7 @@ const initialState = {
     recipes: [],
     recipesBackup: [],
     diets: [],
+    detail: [],
     filtered: []
 }
 
@@ -132,6 +133,11 @@ export const rootReducer = ( state=initialState, action ) => {
             return {
                 ...state,
                 recipes: action.payload
+            }
+        case 'GET_DETAIL':
+            return {
+                ...state,
+                detail: action.payload
             }
     
         default:

@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
-import { getRecipes, getDiets, postRecipe } from '../../actions/';
+import { useNavigate, useParams } from 'react-router-dom';
+import { getRecipes, getDiets, postRecipe, getRecipeDetail, updateRecipe } from '../../actions/';
+import { NavBar } from '../NavBar/NavBar';
 
 const validate = ( input ) => {
     let errors = {};
@@ -57,10 +58,13 @@ const validateBlur = ( input ) => {
 export const CreateRecipe = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    const { id } = useParams();
     const allDiets = useSelector( ( state ) => state.diets );
     const allDishTypes = useSelector( ( state ) => state.recipes );
-    const [errors, setErrors] = useState({});
-    const [input, setInput] = useState({
+    const recipe = useSelector( ( state ) => state.detail );
+    const [ errors, setErrors ] = useState({});
+    const [ updated, setUpdated ] = useState( false );
+    const [ input, setInput ] = useState({
         title: '',
         image: '',
         dishTypes: [],
@@ -143,7 +147,6 @@ export const CreateRecipe = () => {
     } 
 
     const handleDeleteDishType = ( e ) => {
-        console.log('HANDLE_DELETE', e)
         setInput({
             ...input,
             dishTypes: input.dishTypes.filter( type => type != e )
@@ -162,8 +165,13 @@ export const CreateRecipe = () => {
         });
         input.diets = getDiets;
 
-        dispatch( postRecipe( input ) );
-        alert( 'Recipe Created!' );
+        if( !id ) {
+            dispatch( postRecipe( input ) );
+            alert( 'Recipe Created!' );
+        } else {
+            dispatch( updateRecipe( id, input ) );
+            alert( 'Recipe Updated!' );
+        }
 
         setInput({
             title: '',
@@ -177,26 +185,45 @@ export const CreateRecipe = () => {
         });
         navigate( '/home' );
     }
+
+    if( id && recipe.title && !updated ) {
+        setInput({
+            title: recipe.title,
+            image: recipe.image,
+            dishTypes: recipe.dishTypes,
+            summary: recipe.summary,
+            healthScore: recipe.healthScore,
+            weightWatcherSmartPoints: recipe.weightWatcherSmartPoints,
+            steps: recipe.steps,
+            diets: recipe.diets,
+        });
+        setUpdated( !updated );
+    }
     
     useEffect(() => {
         dispatch( getDiets() );
         dispatch( getRecipes() );
-    }, [ dispatch ]);
+        id && dispatch( getRecipeDetail( id ) );
+    }, [ dispatch, id ]);
     
 
   return (
     <div>
+        <NavBar />
         <form>
+            {
+                !id ? <h1>Create your recipe</h1> : <h1>Update recipe</h1>
+            }
             <div>
                 <div>Title</div>
-                <input type='text' name='title' placeholder='E.g. MilkyWay Coffe' onChange={ e => handleChange( e ) } />
+                <input type='text' name='title' value={ input.title } placeholder='E.g. MilkyWay Coffe' onChange={ e => handleChange( e ) } />
                 {
                     errors.title && ( <p>{ errors.title }</p> )
                 }
             </div>
             <div>
                 <div>Image</div>
-                <input type='text' name='image' placeholder='E.g. http://imagesbank.com/myimage.jpg' onChange={ e => handleChange( e ) } onBlur={ e => handleBlur( e ) } />
+                <input type='text' name='image' value={ input.image } placeholder='E.g. http://imagesbank.com/myimage.jpg' onChange={ e => handleChange( e ) } onBlur={ e => handleBlur( e ) } />
                 {
                     errors.image && ( <p>{ errors.image }</p> )
                 }
@@ -222,28 +249,28 @@ export const CreateRecipe = () => {
             </div>
             <div>
                 <div>Summary</div>
-                <textarea name='summary' rows='4' cols='50' placeholder='This is a delicious recipe...' onChange={ e => handleChange( e ) }></textarea>
+                <textarea name='summary' value={ input.summary } rows='4' cols='50' placeholder='This is a delicious recipe...' onChange={ e => handleChange( e ) }></textarea>
                 {
                     errors.summary && ( <p>{ errors.summary }</p> )
                 }
             </div>
             <div>
                 <div>Health Score</div>
-                <input type='number' name='healthScore' placeholder='75' onChange={ e => handleChange( e ) } onBlur={ e => handleBlur( e ) } />
+                <input type='number' name='healthScore' value={ input.healthScore } placeholder='75' onChange={ e => handleChange( e ) } onBlur={ e => handleBlur( e ) } />
                 {
                     errors.healthScore && ( <p>{ errors.healthScore }</p> )
                 }
             </div>
             <div>
                 <div>Weight Watcher Smart Points</div>
-                <input type='number' name='weightWatcherSmartPoints' placeholder='11' onChange={ e => handleChange( e ) } onBlur={ e => handleBlur( e ) } />
+                <input type='number' name='weightWatcherSmartPoints' value={ input.weightWatcherSmartPoints } placeholder='11' onChange={ e => handleChange( e ) } onBlur={ e => handleBlur( e ) } />
                 {
                     errors.weightWatcherSmartPoints && ( <p>{ errors.weightWatcherSmartPoints }</p> )
                 }
             </div>
             <div>
                 <div>Steps</div>
-                <textarea name='steps' rows='4' cols='50' placeholder='First we need to mix all the ingredients...' onChange={ e => handleChange( e ) }></textarea>
+                <textarea name='steps' value={ input.steps } rows='4' cols='50' placeholder='First we need to mix all the ingredients...' onChange={ e => handleChange( e ) }></textarea>
                 {
                     errors.steps && ( <p>{ errors.steps }</p> )
                 }
@@ -270,7 +297,11 @@ export const CreateRecipe = () => {
             <div>
                 {
                     Object.keys( errors ).length === 0 && input.title.length >= 1 ? (
-                        <button type='submit' onClick={ e => handleSubmit( e ) }>Create Recipe</button>
+                        <button type='submit' onClick={ e => handleSubmit( e ) }>
+                            {
+                                id ? <span>Update Recipe</span> : <span>Create Recipe</span>
+                            }
+                        </button>
                         
                     ) : null
                 }

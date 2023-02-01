@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { filterRecipesByCreator, filterRecipesByDiet, getDiets, getRecipes, orderBy } from '../../actions';
 import { Card } from '../Card/Card';
+import { NavBar } from '../NavBar/NavBar';
 import { Paginate } from '../Paginate/Paginate';
 import { SearchBar } from '../SearchBar/SearchBar';
 
@@ -48,7 +49,7 @@ export const Home = () => {
 
   return (
     <>
-        <div>Home</div>
+        <NavBar />
         <div>
             <div>Order by:</div>
             <select onChange={ e => handleSort( e ) }>

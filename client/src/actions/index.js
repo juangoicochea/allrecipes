@@ -42,7 +42,7 @@ export const orderBy = ( payload ) => {
 }
 
 export const searchByName = ( payload ) => {
-    return async function( dispatch ) {
+    return async ( dispatch ) => {
         try {
             const json = await axios(`http://localhost:3001/recipes?title=${ payload }`);
             dispatch({
@@ -58,9 +58,33 @@ export const searchByName = ( payload ) => {
     }
 }
 
+export const getRecipeDetail = ( id ) => {
+    return async ( dispatch ) => {
+        const json = await axios(`http://localhost:3001/recipes/${ id }`);
+        dispatch({
+            type: 'GET_DETAIL',
+            payload: json.data
+        });
+    }
+}
+
 export const postRecipe = ( payload ) => {
-    return async function() {
+    return async () => {
         const json = await axios.post( 'http://localhost:3001/recipes', payload );
+        return json;
+    }
+}
+
+export const updateRecipe = ( id, data ) => {
+    return async () => {
+        const json = await axios.put( `http://localhost:3001/recipes/${ id }`, data );
+        return json;
+    }
+}
+
+export const deleteRecipe = ( id ) => {
+    return async () => {
+        const json = await axios.delete( `http://localhost:3001/recipes/${ id }` );
         return json;
     }
 }

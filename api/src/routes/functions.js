@@ -17,7 +17,7 @@ const getApiRecipes = async () => {
                 summary: recipe.summary,
                 healthScore: recipe.healthScore,
                 weightWatcherSmartPoints: recipe.weightWatcherSmartPoints,
-                steps: recipe.steps,
+                steps: recipe.analyzedInstructions[0].steps,
                 diets: recipe.diets
             }
         });
@@ -30,7 +30,7 @@ const getDbRecipes = async () => {
     return await Recipe.findAll({
         include: {
             model: Diet,
-            attributes: ['name'],
+            attributes: [ 'name' ],
             through: {
                 attributes: []
             }
@@ -85,7 +85,7 @@ const getRecipeDetail = async ( id ) => {
         summary: response.data.summary,
         healthScore: response.data.healthScore,
         weightWatcherSmartPoints: response.data.weightWatcherSmartPoints,
-        steps: response.data.steps,
+        steps: response.data.analyzedInstructions[0].steps,
         diets: response.data.diets
     }
     return recipeApi;
@@ -116,10 +116,45 @@ const postRecipe = async ( data ) => {
             created_db
         }); 
 
-        let recipeDietDb = await Diet.findAll({
+        let recipeDietsDb = await Diet.findAll({
             where: { name: diets }
         });
-        recipeCreated.addDiet( recipeDietDb );
+        recipeCreated.addDiet( recipeDietsDb );
+
+    } catch (error) {
+        console.log( error );
+    }
+}
+
+const updateRecipe = async ( recipe, data ) => { 
+    try {
+        let {
+            title,
+            image,
+            dishTypes,
+            summary,
+            healthScore,
+            weightWatcherSmartPoints,
+            steps,
+            diets,
+            created_db
+        } = data;
+
+       let recipeUpdated = await recipe.update({
+            title,
+            image,
+            dishTypes,
+            summary,
+            healthScore,
+            weightWatcherSmartPoints,
+            steps,
+            created_db
+        }); 
+
+        let recipeDietsDb = await Diet.findAll({
+            where: { name: diets }
+        });
+        await recipeUpdated.setDiets( recipeDietsDb );
 
     } catch (error) {
         console.log( error );
@@ -130,5 +165,6 @@ module.exports = {
     getAllRecipes,
     getApiDiets,
     postRecipe,
-    getRecipeDetail
+    getRecipeDetail,
+    updateRecipe
 }
