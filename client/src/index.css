@@ -11,3 +11,17 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+@font-face {
+  font-family: "CopperPot";
+  src: local("CopperPot"),
+   url( './assets/fonts/copperpot-700.woff2' ) format( 'truetype' );
+  font-weight: bold;
+}
+
+@font-face {
+  font-family: "SourceSansPro";
+  src: local("SourceSansPro"),
+    url( './assets/fonts/sourcesanspro-700.woff2' ) format( 'truetype' );
+  font-weight: bold;
+}

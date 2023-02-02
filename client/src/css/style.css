@@ -1,0 +1,113 @@
+#LandingPage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+#LandingPage .logo {
+  margin: -50px 0 -70px 0;
+  width: 310px;
+}
+#LandingPage button {
+  color: #fff;
+  background-color: #d54215;
+  padding: 0.775rem 6rem;
+  font-family: SourceSansPro, Helvetica, sans-serif;
+  font-size: 0.875rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  line-height: 1.25rem;
+  text-transform: uppercase;
+  text-underline-offset: 0.25rem;
+  text-decoration: none;
+  cursor: pointer;
+  transition: 0.2s;
+  border-width: 3px;
+  border-style: solid;
+  border-color: #d54215;
+}
+#LandingPage button:hover {
+  background-color: #fff;
+  color: rgba(0, 0, 0, 0.95);
+}
+#LandingPage button:hover svg {
+  color: #d54215;
+}
+#LandingPage section {
+  display: flex;
+  width: 1000px;
+  height: 480px;
+  margin-bottom: 20px;
+  border: 10px solid #FFF;
+  box-shadow: 0 0 5px grey;
+}
+#LandingPage section img {
+  width: 0px;
+  flex-grow: 1;
+  object-fit: cover;
+  opacity: 0.8;
+  transition: 0.5s ease;
+}
+#LandingPage section img:hover {
+  cursor: crosshair;
+  width: 300px;
+  opacity: 1;
+  filter: contrast(120%);
+}
+
+#card img {
+  width: 364px;
+  height: 242px;
+}
+#card .dishTypes {
+  font-family: SourceSansPro, Helvetica, sans-serif;
+  font-size: 0.875rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  line-height: 1.25rem;
+  text-transform: uppercase;
+  text-underline-offset: 0.25rem;
+  margin-bottom: 0.5rem;
+  color: rgba(0, 0, 0, 0.65);
+}
+#card .healthScore {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  text-underline-offset: 0.1875rem;
+}
+
+body {
+  min-height: 100vh;
+  font-family: SourceSansPro, Helvetica, sans-serif;
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: rgba(0, 0, 0, 0.95);
+  background-color: #fff;
+  background-image: url("../assets/images/food-pattern.jpg");
+  background-size: 220px;
+}
+
+h3 {
+  font-family: CopperPot, Helvetica, sans-serif;
+  font-size: 1.5rem;
+  line-height: 2rem;
+  color: rgba(0, 0, 0, 0.95);
+  line-height: 2rem;
+  text-underline-offset: 0.4375rem;
+  text-decoration-color: #d54215 !important;
+  text-decoration-thickness: 1px !important;
+  -webkit-text-decoration-skip-ink: none;
+  text-decoration-skip-ink: none;
+  margin: 5px 0 0 0;
+}
+h3:hover {
+  text-decoration: underline;
+}
+
+a {
+  text-decoration: none;
+}
+
+/*# sourceMappingURL=style.css.map */

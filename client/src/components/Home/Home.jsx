@@ -88,7 +88,9 @@ export const Home = () => {
                         id={ recipe.id }
                         title={ recipe.title }
                         image={ recipe.image }
-                        dishTypes={ recipe.dishTypes }
+                        dishTypes={ recipe.dishTypes.map( ( e, i ) => ( 
+                            <span key={ e }>{ e }{ i < recipe.dishTypes.length-1 && ' - ' } </span> ) 
+                            ) }
                         healthScore={ recipe.healthScore }
                     />
                 )

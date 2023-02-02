@@ -1,0 +1,38 @@
+@use 'mixinsfunc';
+
+#LandingPage {
+    @include mixinsfunc.create-flexbox( column );
+
+    .logo {
+        margin: -50px 0 -70px 0;
+        width: 310px;
+    }
+
+    button {
+        @include mixinsfunc.create-button;
+    }
+    
+    section {
+        display: flex;
+        width: 1000px;
+        height: 480px;
+        margin-bottom: 20px;
+        border: 10px solid #FFF;
+        box-shadow: 0 0 5px grey;
+    
+        img {
+            width: 0px;
+            flex-grow: 1;
+            object-fit: cover;
+            opacity: .8;
+            transition: .5s ease;
+    
+            &:hover {
+                cursor: crosshair;
+                width: 300px;
+                opacity: 1;
+                filter: contrast( 120% );
+            }
+        }
+    }
+}

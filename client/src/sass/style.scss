@@ -1,0 +1,40 @@
+@use 'landingPage';
+@use 'card';
+
+body {
+    min-height: 100vh;
+    font-family: SourceSansPro,Helvetica,sans-serif;
+    font-size: 1.125rem;
+    line-height: 1.75rem;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    color: rgba(0,0,0,.95);
+
+    background: {
+        color: #fff;
+        image: url( '../assets/images/food-pattern.jpg' );
+        size: 220px;
+    }
+}
+
+h3 {
+    font-family: CopperPot,Helvetica,sans-serif;
+    font-size: 1.5rem;
+    line-height: 2rem;
+    color: rgba(0,0,0,.95);
+    line-height: 2rem;
+    text-underline-offset: 0.4375rem;
+    text-decoration-color: #d54215 !important;
+    text-decoration-thickness: 1px !important;
+    -webkit-text-decoration-skip-ink: none;
+    text-decoration-skip-ink: none;
+    margin: 5px 0 0 0;
+
+    &:hover {
+        text-decoration: underline;
+    }
+}
+
+a {
+    text-decoration: none;
+}
