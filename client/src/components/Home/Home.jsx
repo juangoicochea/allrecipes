@@ -48,64 +48,77 @@ export const Home = () => {
     }
 
   return (
-    <>
+    <div className='homeComponent'>
+        <div className='homeComponent__falseNavBar'></div>
         <NavBar />
-        <div>
-            <div>Order by:</div>
-            <select onChange={ e => handleSort( e ) }>
-                <option value='All' key='All' default>All</option>
-                <option value="Asc_name" key="Asc_name">Alphabetically (A-Z)</option>
-                <option value="Desc_name" key="Desc_name">Alphabetically (Z-A)</option>
-                <option value="Asc_healthScore" key="Asc_healthScore">Health Score (Lower-Higher)</option>
-                <option value="Desc_healthScore" key="Desc_healthScore">Health Score (Higher-Lower)</option>
-            </select>
+        <div className='homeComponent__boxFilters'>
+            <div className='homeComponent__boxFilters__left'>
+                <div>
+                    <div>Order by:</div>
+                    <select onChange={ e => handleSort( e ) }>
+                        <option value='All' key='All' default>All</option>
+                        <option value="Asc_name" key="Asc_name">Alphabetically (A-Z)</option>
+                        <option value="Desc_name" key="Desc_name">Alphabetically (Z-A)</option>
+                        <option value="Asc_healthScore" key="Asc_healthScore">Health Score (Lower-Higher)</option>
+                        <option value="Desc_healthScore" key="Desc_healthScore">Health Score (Higher-Lower)</option>
+                    </select>
+                </div>
+                <div>
+                    <div>Filter by diet:</div>
+                    <select onChange={ e => handleFilterDiets( e ) }>
+                        <option value='All' key='All' default>All</option>
+                        {
+                            allDiets?.map( diet => (
+                                <option value={ diet.name } key={ diet.id }>{ diet.name }</option>
+                            ))
+                        }
+                    </select>
+                </div>
+                <div>
+                    <div>Filter by creator:</div>
+                    <select onChange={ e => handleFilterByCreator( e ) }>
+                        <option value='All' key='All'>All</option>
+                        <option value='API_Created' key='API_Created'>API Created</option>
+                        <option value='User_Created' key='User_Created'>User Created</option>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <div>Search:</div>
+                <SearchBar />
+            </div>
         </div>
-        <div>
-            <div>Filter by diet:</div>
-            <select onChange={ e => handleFilterDiets( e ) }>
-                <option value='All' key='All' default>All</option>
-                {
-                    allDiets?.map( diet => (
-                        <option value={ diet.name } key={ diet.id }>{ diet.name }</option>
-                    ))
-                }
-            </select>
-        </div>
-        <div>
-            <div>Filter by creator:</div>
-            <select onChange={ e => handleFilterByCreator( e ) }>
-                <option value='All' key='All'>All</option>
-                <option value='API_Created' key='API_Created'>API Created</option>
-                <option value='User_Created' key='User_Created'>User Created</option>
-            </select>
-        </div>
-        <SearchBar />
-        {
-            recipesOfActualPage.length > 0 && !loader ? (
-                recipesOfActualPage.map( recipe => (
-                    <Card 
-                        key={ recipe.id }
-                        id={ recipe.id }
-                        title={ recipe.title }
-                        image={ recipe.image }
-                        dishTypes={ recipe.dishTypes.map( ( e, i ) => ( 
-                            <span key={ e }>{ e }{ i < recipe.dishTypes.length-1 && ' - ' } </span> ) 
-                            ) }
-                        healthScore={ recipe.healthScore }
-                    />
+        <section>
+
+            {
+                recipesOfActualPage.length > 0 && !loader ? (
+                    recipesOfActualPage.map( recipe => (
+                        <Card 
+                            key={ recipe.id }
+                            id={ recipe.id }
+                            title={ recipe.title }
+                            image={ recipe.image }
+                            dishTypes={ recipe.dishTypes.map( ( e, i ) => ( 
+                                <span key={ e }>{ e }{ i < recipe.dishTypes.length-1 && ' - ' } </span> ) 
+                                ) }
+                            healthScore={ recipe.healthScore }
+                        />
+                    )
                 )
-            )
-            ) : !recipesOfActualPage.length > 0 && loader ? (
-                <h2>Loading...</h2>
-            ) : (
-                <h1>There is not a recipe by that name!</h1>
-            )
-        }
+                ) : !recipesOfActualPage.length > 0 && loader ? (
+                    <h2>Loading...</h2>
+                ) : (
+                    <h1>There is not a recipe by that name!</h1>
+                )
+            }
+
+        </section>
         <Paginate
             allRecipes={ allRecipes.length }
             recipesPerPage={ recipesPerPage }
             paginate={ paginate }
+            currentPage={ currentPage }
         />
-    </>
+    </div>
   );
 }

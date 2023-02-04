@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { searchByName } from '../../actions';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
 
 export const SearchBar = () => {
     const dispatch = useDispatch();
@@ -18,7 +20,9 @@ export const SearchBar = () => {
   return (
     <form>
         <input type='text' placeholder='Search Recipe' onChange={ e => handleInputChange( e ) } />
-        <button type='submit' onClick={ e => handleSubmit( e ) }>Search</button>
+        <button className='search' type='submit' onClick={ e => handleSubmit( e ) }>
+          <FontAwesomeIcon icon={solid( 'magnifying-glass' )} />
+        </button>
     </form>
   );
 }

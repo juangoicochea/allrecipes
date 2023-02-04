@@ -1,5 +1,5 @@
 
-export const Paginate = ({ allRecipes, recipesPerPage, paginate   }) => {
+export const Paginate = ({ allRecipes, recipesPerPage, paginate, currentPage }) => {
     const pageNumbers = [];
 
     for( let i = 1; i <= Math.ceil( allRecipes / recipesPerPage ); i++ ) {
@@ -7,11 +7,11 @@ export const Paginate = ({ allRecipes, recipesPerPage, paginate   }) => {
     }
 
   return (
-    <div>
+    <div className='paginateComponent'>
         <ul>
             {
                 pageNumbers && pageNumbers.map( number => (
-                    <li key={ number }>
+                    <li className={ number === currentPage ? 'currentPage' : 'otherPage' } key={ number }>
                         <a onClick={ () => paginate( number ) }>{ number }</a>
                     </li>
                 ))

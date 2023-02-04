@@ -1,0 +1,42 @@
+.paginateComponent {
+    display: grid;
+    place-items: center;
+
+    ul {
+        display: flex;
+        list-style-type: none;
+
+        li {
+            font: {
+                size: .875rem;
+                weight: 700;
+            }
+            line-height: 1.25rem;
+            text-underline-offset: 0.1875rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #fff;
+            width: 2.25rem;
+            height: 2.25rem;
+            margin: 0 5px;
+            cursor: pointer;
+            border: {
+                style: solid;
+                color: #d54215;
+                radius: 50%;
+                width: 1px;
+            }
+
+            &:hover {
+                background-color: #d54215;
+                color: white;
+            }
+        }
+
+        .currentPage {
+            background-color: #d54215;
+            color: white;
+        }
+    }
+}

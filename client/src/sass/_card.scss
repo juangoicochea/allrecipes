@@ -1,11 +1,14 @@
-#card {
+.cardComponent {
+    text-align: left;
+    width: 364px;
+    margin: 15px 0;
 
     img {
         width: 364px;
         height: 242px;
     }
 
-    .dishTypes {
+    &__dishTypes {
         font-family: SourceSansPro,Helvetica,sans-serif;
         font-size: .875rem;
         font-weight: 700;
@@ -17,10 +20,11 @@
         color: rgba(0,0,0,.65);
     }
 
-    .healthScore {
+    &__healthScore {
         font-size: .875rem;
         line-height: 1.25rem;
         text-underline-offset: 0.1875rem;
+        color: rgba(0,0,0,.65);
+        font-weight: 400;
     }
-
 }

@@ -1,7 +1,7 @@
 @use 'mixinsfunc';
 
-#LandingPage {
-    @include mixinsfunc.create-flexbox( column );
+.landingPageComponent {
+    @include mixinsfunc.create-flexbox( column, center );
 
     .logo {
         margin: -50px 0 -70px 0;

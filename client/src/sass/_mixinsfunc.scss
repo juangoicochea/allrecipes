@@ -1,8 +1,16 @@
-@mixin create-flexbox( $direction ) {
+@mixin create-font-default {
+    font-family: SourceSansPro,Helvetica,sans-serif;
+    font-size: 1.125rem;
+    line-height: 1.75rem;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+@mixin create-flexbox( $direction, $justify ) {
     display: flex;
     flex-direction: $direction;
     align-items: center;
-    justify-content: center;
+    justify-content: $justify;
 }
 
 @mixin create-button {
@@ -34,4 +42,23 @@
             color: #d54215;
         }
     }
+}
+
+@mixin create-link {
+    color: rgba(0,0,0,.95);
+    text-underline-offset: 0.4375rem;
+    text-decoration-color: #d54215 !important;
+    text-decoration-thickness: 1px !important;
+    -webkit-text-decoration-skip-ink: none;
+    text-decoration-skip-ink: none;
+    cursor: pointer;
+}
+
+@mixin create-section( $paddingHeight, $bgColor, $space ) {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: $space;
+    width: 86%;
+    padding: $paddingHeight 7%;
+    background-color: $bgColor;
 }

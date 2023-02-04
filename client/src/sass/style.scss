@@ -1,15 +1,15 @@
 @use 'landingPage';
 @use 'card';
+@use 'home';
+@use 'navBar';
+@use 'paginate';
+@use 'mixinsfunc';
 
 body {
-    min-height: 100vh;
-    font-family: SourceSansPro,Helvetica,sans-serif;
-    font-size: 1.125rem;
-    line-height: 1.75rem;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    color: rgba(0,0,0,.95);
+    @include mixinsfunc.create-font-default;
 
+    min-height: 100vh;
+    color: rgba(0,0,0,.95);
     background: {
         color: #fff;
         image: url( '../assets/images/food-pattern.jpg' );
@@ -18,16 +18,12 @@ body {
 }
 
 h3 {
+    @include mixinsfunc.create-link;
+
     font-family: CopperPot,Helvetica,sans-serif;
     font-size: 1.5rem;
     line-height: 2rem;
-    color: rgba(0,0,0,.95);
     line-height: 2rem;
-    text-underline-offset: 0.4375rem;
-    text-decoration-color: #d54215 !important;
-    text-decoration-thickness: 1px !important;
-    -webkit-text-decoration-skip-ink: none;
-    text-decoration-skip-ink: none;
     margin: 5px 0 0 0;
 
     &:hover {
@@ -37,4 +33,16 @@ h3 {
 
 a {
     text-decoration: none;
+}
+
+input, select {
+    font-family: SourceSansPro,Helvetica,sans-serif;
+    font-size: 1rem;
+    text-transform: capitalize;
+    outline: 0;
+    border-right: 0;
+    border-radius: 0;
+    border-color: rgba(0,0,0,.65);
+    padding: 0.75rem 1rem;
+    border: 1px solid rgba(0,0,0,.65);
 }

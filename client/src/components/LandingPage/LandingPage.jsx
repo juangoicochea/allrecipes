@@ -5,13 +5,13 @@ import image3 from '../../assets/images/landing3.webp';
 import image4 from '../../assets/images/landing4.webp';
 import image5 from '../../assets/images/landing5.webp';
 import logo from '../../assets/images/allrecipes-logo.svg';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { solid } from '@fortawesome/fontawesome-svg-core/import.macro'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
 
 export const LandingPage = () => {
   return (
-    <div id='LandingPage'>
-      <img className='logo' src={ logo } alt='Allrecipes logo' />
+    <div className='landingPageComponent'>
+      <img className='logo' src={ logo } alt='AllRecipes' />
       <section>
         <img src={ image1 } alt='Delicious recipe 1' />
         <img src={ image2 } alt='Delicious recipe 2' />

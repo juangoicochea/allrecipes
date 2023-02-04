@@ -1,0 +1,42 @@
+@use 'mixinsfunc';
+
+.homeComponent {
+
+    section {
+        @include mixinsfunc.create-section( 40px, white, space-around );
+
+        padding: 40px 0;
+        margin: 0 auto;
+    }
+
+    &__falseNavBar {
+        height: 95px;
+    }
+
+    &__boxFilters {
+        @include mixinsfunc.create-section( 10px, none, space-between );
+
+        padding: 30px 7% 2px 7%;
+        text-align: left;
+        font-weight: 700;
+
+        &__left {
+            width: 50%;
+            display: flex;
+            justify-content: space-between;
+        }
+    }
+
+    .search {
+        background-color: #d54215;
+        padding: 0.75rem 1rem;
+        border: 1px solid #d54215;
+        border-top-width: 5px;
+        color: white;
+        cursor: pointer;
+
+        &:hover {
+            background-color: #b53811;
+        }
+    }
+}

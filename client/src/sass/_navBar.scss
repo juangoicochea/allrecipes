@@ -1,0 +1,33 @@
+@use 'mixinsfunc';
+
+.navBarComponent {
+    @include mixinsfunc.create-flexbox( row, space-between );
+
+    background-color: white;
+    width: 86%;
+    height: 75px;
+    display: flex;
+    padding: 10px 7%;
+    position: fixed;
+    z-index: 12;
+    top: 0;
+    box-shadow: 0 0.125rem 0.375rem rgb(0 0 0 / 15%);
+
+    a {
+        @include mixinsfunc.create-link;
+
+        margin: 0 0 0 50px;
+        font-size: .875rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+
+    &__logo {
+        width: 250px;
+        margin: 0 0 0 -50px;
+    }
+}

@@ -1,6 +1,7 @@
 import { useDispatch } from 'react-redux';
 import { getRecipes } from '../../actions';
 import { Link, useNavigate } from 'react-router-dom';
+import logo from '../../assets/images/allrecipes-logo.svg';
 
 export const NavBar = () => {
     const dispatch = useDispatch();
@@ -18,20 +19,22 @@ export const NavBar = () => {
         const getURL = document.URL;
         if( getURL.search( '/home' ) === -1 ) {
             return (
-                <button onClick={ e => handleClickReturn() }>Return Home</button>
+                <a onClick={ e => handleClickReturn() }>Return Home</a>
             );
         } else {
             return (
-                <button onClick={ e => handleClickReload() }>Reload Recipes</button>
+                <a onClick={ e => handleClickReload() }>Reload Recipes</a>
             );
         }
     }
 
   return (
-    <div>
-        AllRecipes 
+    <div className='navBarComponent'>
+        <Link to='/'><img className='navBarComponent__logo' src={ logo } alt='AllRecipes' /></Link>
+        <div>
         { buttonMenu() }
         <Link to='/create'>Add Recipe</Link>
+        </div>
     </div>
   );
 }

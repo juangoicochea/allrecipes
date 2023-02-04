@@ -25,3 +25,10 @@ code {
     url( './assets/fonts/sourcesanspro-700.woff2' ) format( 'truetype' );
   font-weight: bold;
 }
+
+@font-face {
+  font-family: "SourceSansPro";
+  src: local("SourceSansPro"),
+    url( './assets/fonts/sourcesanspro.woff2' ) format( 'truetype' );
+  font-weight: normal;
+}
