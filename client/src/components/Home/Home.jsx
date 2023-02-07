@@ -49,7 +49,7 @@ export const Home = () => {
 
   return (
     <div className='homeComponent'>
-        <div className='homeComponent__falseNavBar'></div>
+        <div className='falseNavBar'></div>
         <NavBar />
         <div className='homeComponent__boxFilters'>
             <div className='homeComponent__boxFilters__left'>

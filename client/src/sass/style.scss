@@ -3,6 +3,7 @@
 @use 'home';
 @use 'navBar';
 @use 'paginate';
+@use 'createRecipe';
 @use 'mixinsfunc';
 
 body {
@@ -15,6 +16,15 @@ body {
         image: url( '../assets/images/food-pattern.jpg' );
         size: 220px;
     }
+}
+
+h1 {
+    font-family: CopperPot,Helvetica,sans-serif;
+    font-size: 2rem;
+    line-height: 2rem;
+    line-height: 2rem;
+    margin: 5px 0 0 0;
+    text-transform: capitalize;
 }
 
 h3 {
@@ -45,4 +55,8 @@ input, select {
     border-color: rgba(0,0,0,.65);
     padding: 0.75rem 1rem;
     border: 1px solid rgba(0,0,0,.65);
+}
+
+.falseNavBar {
+    height: 95px;
 }

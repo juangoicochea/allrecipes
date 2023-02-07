@@ -1,0 +1,80 @@
+@use 'mixinsfunc';
+
+.createRecipeComponent {
+    
+    form {
+        width: 70%;
+    }
+
+    section {
+        @include mixinsfunc.create-section( 40px, white, space-around );
+
+        padding: 40px 0;
+        margin: 25px auto;
+    }
+
+    button {
+        @include mixinsfunc.create-button;
+    }
+
+    &__divForm {
+        width: 100%;
+        margin: 30px 0;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+
+        p {
+            color: red;
+            text-align: right;
+        }
+
+        span {
+            width: 20%;
+            text-align: left;
+            font-size: 1.3rem;
+        }
+
+        div {
+            width: 70%;
+        }
+
+        input {
+            width: 100%;
+        }
+
+        textarea {
+            width: 104%;
+            height: 150px;
+        }
+
+        select {
+            width: 105%;
+        }
+
+        ul {
+            list-style: none;
+            display: flex;
+        }
+
+        li {
+            margin: 0 15px;
+            text-transform: capitalize;
+            border: 1px solid #d54215;
+            padding: 0 14px;
+            border-radius: 10px;
+
+            span {
+                text-transform: lowercase;
+                cursor: pointer;
+                color: red;
+                font-weight: 700;
+                padding: 0 0 2px 6px;
+
+                &:hover {
+                    color: black;
+                }
+            }
+        }
+    }
+}

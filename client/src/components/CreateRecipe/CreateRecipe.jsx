@@ -8,31 +8,31 @@ const validate = ( input ) => {
     let errors = {};
 
     if( !input.title ) {
-        errors.title = 'Title is require';
+        errors.title = 'Title is require.';
     }
 
     if( !input.summary ) {
-        errors.summary = 'Summary is require';
+        errors.summary = 'Summary is require.';
     }
 
     if( !input.steps ) {
-        errors.steps = 'Steps are require';
+        errors.steps = 'Steps are require.';
     }
 
     if( input.dishTypes.length <= 0 ) {
-        errors.dishTypes = 'Please select one dishtype at least';
+        errors.dishTypes = 'Please select one dishtype at least.';
     }
 
     if( input.dishTypes.length >= 5 ) {
-        errors.dishTypes = 'Please select maximun 4 dishTypes';
+        errors.dishTypes = 'Please select maximun 4 dishTypes.';
     }
 
     if( input.diets.length <= 0 ) {
-        errors.diets = 'Please select one diet at least';
+        errors.diets = 'Please select one diet at least.';
     }
 
     if( input.diets.length >= 5 ) {
-        errors.diets = 'Please select maximun 4 diets';
+        errors.diets = 'Please select maximun 4 diets.';
     }
     return errors;
 }
@@ -42,15 +42,15 @@ const validateBlur = ( input ) => {
     const regExesUrl = /(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/g;
     
     if( input.image && input.image.match( regExesUrl ) === null ) {
-        errors.image = 'Its not a valid URL image';
+        errors.image = 'Its not a valid URL image.';
     }
 
     if( input.healthScore < 0 || input.healthScore > 100 ) {
-        errors.healthScore = 'Please write a number between 0 and 100';
+        errors.healthScore = 'Please write a number between 0 and 100.';
     }
 
     if( input.weightWatcherSmartPoints < 0 || input.weightWatcherSmartPoints > 100 ) {
-        errors.weightWatcherSmartPoints = 'Please write a number between 0 and 100';
+        errors.weightWatcherSmartPoints = 'Please write a number between 0 and 100.';
     }
     return errors;
 }
@@ -208,105 +208,124 @@ export const CreateRecipe = () => {
     
 
   return (
-    <div>
+    <div className='createRecipeComponent'>
+        <div className='falseNavBar'></div>
         <NavBar />
-        <form>
-            {
-                !id ? <h1>Create your recipe</h1> : <h1>Update recipe</h1>
-            }
-            <div>
-                <div>Title</div>
-                <input type='text' name='title' value={ input.title } placeholder='E.g. MilkyWay Coffe' onChange={ e => handleChange( e ) } />
+        <section>
+            <form>
                 {
-                    errors.title && ( <p>{ errors.title }</p> )
+                    !id ? <h1>Create your recipe</h1> : <h1>Update recipe</h1>
                 }
-            </div>
-            <div>
-                <div>Image</div>
-                <input type='text' name='image' value={ input.image } placeholder='E.g. http://imagesbank.com/myimage.jpg' onChange={ e => handleChange( e ) } onBlur={ e => handleBlur( e ) } />
-                {
-                    errors.image && ( <p>{ errors.image }</p> )
-                }
-            </div>
-            <div>
-                <div>Dish Types</div>
-                <select name='dishTypes' onChange={ e => handleSelectDishTypes( e ) }>
-                    <option disabled selected value>Select...</option>
-                    {
-                        getAllDishTypes()
-                    }
-                </select>
-                <ul>
-                    {
-                        input.dishTypes.map( type => (
-                            <li key={ type }>{ type } <span onClick={ () => handleDeleteDishType( type ) }>X</span></li>
-                        ))
-                    }
-                </ul>
-                {
-                    errors.dishTypes && ( <p>{ errors.dishTypes }</p> )
-                }
-            </div>
-            <div>
-                <div>Summary</div>
-                <textarea name='summary' value={ input.summary } rows='4' cols='50' placeholder='This is a delicious recipe...' onChange={ e => handleChange( e ) }></textarea>
-                {
-                    errors.summary && ( <p>{ errors.summary }</p> )
-                }
-            </div>
-            <div>
-                <div>Health Score</div>
-                <input type='number' name='healthScore' value={ input.healthScore } placeholder='75' onChange={ e => handleChange( e ) } onBlur={ e => handleBlur( e ) } />
-                {
-                    errors.healthScore && ( <p>{ errors.healthScore }</p> )
-                }
-            </div>
-            <div>
-                <div>Weight Watcher Smart Points</div>
-                <input type='number' name='weightWatcherSmartPoints' value={ input.weightWatcherSmartPoints } placeholder='11' onChange={ e => handleChange( e ) } onBlur={ e => handleBlur( e ) } />
-                {
-                    errors.weightWatcherSmartPoints && ( <p>{ errors.weightWatcherSmartPoints }</p> )
-                }
-            </div>
-            <div>
-                <div>Steps</div>
-                <textarea name='steps' value={ input.steps } rows='4' cols='50' placeholder='First we need to mix all the ingredients...' onChange={ e => handleChange( e ) }></textarea>
-                {
-                    errors.steps && ( <p>{ errors.steps }</p> )
-                }
-            </div>
-            <div>
-                <div>Diets</div>
-                <select name='diets' onChange={ e => handleSelectDiets( e ) }>
-                    <option disabled selected value>Select...</option>
-                    {
-                        getAllDiets()
-                    }
-                </select>
-                <ul>
-                    {
-                        input.diets.map( diet => (
-                            <li key={ diet.name ? diet.name : diet }>{ diet.name ? diet.name : diet } <span onClick={ () => handleDeleteDiet( diet.name ? diet.name : diet ) }>X</span></li>
-                        ))
-                    }
-                </ul>
-                {
-                    errors.diets && ( <p>{ errors.diets }</p> )
-                }
-            </div>
-            <div>
-                {
-                    Object.keys( errors ).length === 0 && input.title.length >= 1 ? (
-                        <button type='submit' onClick={ e => handleSubmit( e ) }>
+                <div className='createRecipeComponent__divForm'>
+                    <span>Title:</span>
+                    <div>
+                        <input type='text' name='title' value={ input.title } placeholder='E.g. MilkyWay Coffe' onChange={ e => handleChange( e ) } />
+                        {
+                            errors.title && ( <p>{ errors.title }</p> )
+                        }
+                    </div>
+                </div>
+                <div className='createRecipeComponent__divForm'>
+                    <span>Image:</span>
+                    <div>
+                        <input type='text' name='image' value={ input.image } placeholder='E.g. http://imagesbank.com/myimage.jpg' onChange={ e => handleChange( e ) } onBlur={ e => handleBlur( e ) } />
+                        {
+                            errors.image && ( <p>{ errors.image }</p> )
+                        }
+                    </div>
+                </div>
+                <div className='createRecipeComponent__divForm'>
+                    <span>Dish Types:</span>
+                    <div>
+                        <select name='dishTypes' onChange={ e => handleSelectDishTypes( e ) }>
+                            <option disabled selected value>Select...</option>
                             {
-                                id ? <span>Update Recipe</span> : <span>Create Recipe</span>
+                                getAllDishTypes()
                             }
-                        </button>
-                        
-                    ) : null
-                }
-            </div>
-        </form>
+                        </select>
+                        <ul>
+                            {
+                                input.dishTypes.map( type => (
+                                    <li key={ type }>{ type } <span onClick={ () => handleDeleteDishType( type ) }>x</span></li>
+                                ))
+                            }
+                        </ul>
+                        {
+                            errors.dishTypes && ( <p>{ errors.dishTypes }</p> )
+                        }
+                    </div>
+                </div>
+                <div className='createRecipeComponent__divForm'>
+                    <span>Summary:</span>
+                    <div>
+                        <textarea name='summary' value={ input.summary } placeholder='This is a delicious recipe...' onChange={ e => handleChange( e ) }></textarea>
+                        {
+                            errors.summary && ( <p>{ errors.summary }</p> )
+                        }
+                    </div>
+                </div>
+                <div className='createRecipeComponent__divForm'>
+                    <span>Health Score:</span>
+                    <div>
+                        <input type='number' name='healthScore' value={ input.healthScore } placeholder='75' onChange={ e => handleChange( e ) } onBlur={ e => handleBlur( e ) } />
+                        {
+                            errors.healthScore && ( <p>{ errors.healthScore }</p> )
+                        }
+                    </div>
+                </div>
+                <div className='createRecipeComponent__divForm'>
+                    <span>Weight Watcher Smart Points:</span>
+                    <div>
+                        <input type='number' name='weightWatcherSmartPoints' value={ input.weightWatcherSmartPoints } placeholder='11' onChange={ e => handleChange( e ) } onBlur={ e => handleBlur( e ) } />
+                        {
+                            errors.weightWatcherSmartPoints && ( <p>{ errors.weightWatcherSmartPoints }</p> )
+                        }
+                    </div>
+                </div>
+                <div className='createRecipeComponent__divForm'>
+                    <span>Steps:</span>
+                    <div>
+                        <textarea name='steps' value={ input.steps } rows='4' cols='50' placeholder='First we need to mix all the ingredients...' onChange={ e => handleChange( e ) }></textarea>
+                        {
+                            errors.steps && ( <p>{ errors.steps }</p> )
+                        }
+                    </div>
+                </div>
+                <div className='createRecipeComponent__divForm'>
+                    <span>Diets:</span>
+                    <div>
+                        <select name='diets' onChange={ e => handleSelectDiets( e ) }>
+                            <option disabled selected value>Select...</option>
+                            {
+                                getAllDiets()
+                            }
+                        </select>
+                        <ul>
+                            {
+                                input.diets.map( diet => (
+                                    <li key={ diet.name ? diet.name : diet }>{ diet.name ? diet.name : diet } <span onClick={ () => handleDeleteDiet( diet.name ? diet.name : diet ) }>x</span></li>
+                                ))
+                            }
+                        </ul>
+                        {
+                            errors.diets && ( <p>{ errors.diets }</p> )
+                        }
+                    </div>
+                </div>
+                <div>
+                    {
+                        Object.keys( errors ).length === 0 && input.title.length >= 1 ? (
+                            <button type='submit' onClick={ e => handleSubmit( e ) }>
+                                {
+                                    id ? <span>Update Recipe</span> : <span>Create Recipe</span>
+                                }
+                            </button>
+                            
+                        ) : null
+                    }
+                </div>
+            </form>
+        </section>
     </div>
   );
 }

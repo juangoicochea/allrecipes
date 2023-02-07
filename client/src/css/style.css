@@ -93,9 +93,6 @@
   padding: 40px 0;
   margin: 0 auto;
 }
-.homeComponent__falseNavBar {
-  height: 95px;
-}
 .homeComponent__boxFilters {
   display: flex;
   flex-wrap: wrap;
@@ -195,6 +192,95 @@
   color: white;
 }
 
+.createRecipeComponent form {
+  width: 70%;
+}
+.createRecipeComponent section {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  width: 86%;
+  padding: 40px 7%;
+  background-color: white;
+  padding: 40px 0;
+  margin: 25px auto;
+}
+.createRecipeComponent button {
+  color: #fff;
+  background-color: #d54215;
+  padding: 0.775rem 6rem;
+  font-family: SourceSansPro, Helvetica, sans-serif;
+  font-size: 0.875rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  line-height: 1.25rem;
+  text-transform: uppercase;
+  text-underline-offset: 0.25rem;
+  text-decoration: none;
+  cursor: pointer;
+  transition: 0.2s;
+  border-width: 3px;
+  border-style: solid;
+  border-color: #d54215;
+}
+.createRecipeComponent button:hover {
+  background-color: #fff;
+  color: rgba(0, 0, 0, 0.95);
+}
+.createRecipeComponent button:hover svg {
+  color: #d54215;
+}
+.createRecipeComponent__divForm {
+  width: 100%;
+  margin: 30px 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.createRecipeComponent__divForm p {
+  color: red;
+  text-align: right;
+}
+.createRecipeComponent__divForm span {
+  width: 20%;
+  text-align: left;
+  font-size: 1.3rem;
+}
+.createRecipeComponent__divForm div {
+  width: 70%;
+}
+.createRecipeComponent__divForm input {
+  width: 100%;
+}
+.createRecipeComponent__divForm textarea {
+  width: 104%;
+  height: 150px;
+}
+.createRecipeComponent__divForm select {
+  width: 105%;
+}
+.createRecipeComponent__divForm ul {
+  list-style: none;
+  display: flex;
+}
+.createRecipeComponent__divForm li {
+  margin: 0 15px;
+  text-transform: capitalize;
+  border: 1px solid #d54215;
+  padding: 0 14px;
+  border-radius: 10px;
+}
+.createRecipeComponent__divForm li span {
+  text-transform: lowercase;
+  cursor: pointer;
+  color: red;
+  font-weight: 700;
+  padding: 0 0 2px 6px;
+}
+.createRecipeComponent__divForm li span:hover {
+  color: black;
+}
+
 body {
   font-family: SourceSansPro, Helvetica, sans-serif;
   font-size: 1.125rem;
@@ -206,6 +292,15 @@ body {
   background-color: #fff;
   background-image: url("../assets/images/food-pattern.jpg");
   background-size: 220px;
+}
+
+h1 {
+  font-family: CopperPot, Helvetica, sans-serif;
+  font-size: 2rem;
+  line-height: 2rem;
+  line-height: 2rem;
+  margin: 5px 0 0 0;
+  text-transform: capitalize;
 }
 
 h3 {
@@ -240,6 +335,10 @@ input, select {
   border-color: rgba(0, 0, 0, 0.65);
   padding: 0.75rem 1rem;
   border: 1px solid rgba(0, 0, 0, 0.65);
+}
+
+.falseNavBar {
+  height: 95px;
 }
 
 /*# sourceMappingURL=style.css.map */

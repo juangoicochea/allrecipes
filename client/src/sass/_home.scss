@@ -9,10 +9,6 @@
         margin: 0 auto;
     }
 
-    &__falseNavBar {
-        height: 95px;
-    }
-
     &__boxFilters {
         @include mixinsfunc.create-section( 10px, none, space-between );
 
