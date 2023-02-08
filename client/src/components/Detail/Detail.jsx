@@ -14,7 +14,7 @@ export const Detail = () => {
     const recipe = useSelector( ( state ) => state.detail );
 
     const handleDelete = ( id ) => {
-      var result = confirm( 'Are you sure you want to delete this recipe?' );
+      var result = window.confirm( 'Are you sure you want to delete this recipe?' );
       if( result ) {
         dispatch( deleteRecipe( id ) );
         alert( 'Recipe deleted!' );
