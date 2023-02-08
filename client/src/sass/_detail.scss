@@ -1,0 +1,131 @@
+@use 'mixinsfunc';
+
+.detailComponent {
+
+    h1 {
+        font-size: 3rem;
+        margin-block-start: 0.83em;
+    }
+
+    h2 {
+        font-size: 2.25rem;
+    }
+
+    section img {
+        max-width: 990px;
+    }
+
+    section {
+        @include mixinsfunc.create-section( 40px, white, space-around );
+
+        flex-direction: column;
+        width: 81%;
+        padding: 40px 4%;
+        margin: 25px auto;
+    }
+
+    .returnButton {
+        background: none;
+        border: 0;
+        text-transform: uppercase;
+        font-weight: 700;
+        margin-right: auto;
+        cursor: pointer;
+
+        &:hover {
+            color: #b53811;
+        }
+    }
+
+    &__info {
+        text-align: left;
+    }
+
+    &__ranks {
+        text-transform: uppercase;
+        font-size: .875rem;
+        font-weight: 700;
+        margin: 15px 0 30px 0;
+
+        span:first-child {
+            border-right: 1px solid rgba(0,0,0,.15);
+            padding-right: 17px;
+            margin-right: 17px;
+        }
+        
+        .star {
+            color: #d54215;
+        }
+    }
+
+    &__infoHeader {
+        display: flex;
+        justify-content: space-between;
+
+        &__summary {
+            width: 70%;
+        }
+    
+        &__dietsTypes {
+            width: 10%;
+
+            ul {
+                padding-left: 18px;
+            }
+        }
+    }
+
+    &__infoFooter {
+        ol {
+            list-style-type: decimal;
+            margin-left: 20px;
+            
+            li::marker {
+                font-size: 3rem;
+                font-weight: 700;
+                content: counter(list-item)"\a0\a0";
+            }
+
+            li {
+                list-style: none;
+                padding: 0;
+                border-bottom: 1px solid #80808021;
+                margin-bottom: 40px;
+            }
+        }
+
+        &__button {
+            @include mixinsfunc.create-button;
+            margin: 30px 30px 0 0;
+        }
+    }
+}
+
+@media ( max-width: 764px ) {
+    .detailComponent {
+        section {
+            width: 88%;
+        }
+
+        section img {
+            width: 100%;
+        }
+
+        button {
+            padding: 0.475rem 2rem;
+        }
+
+        &__infoHeader {
+            display: block;
+
+            &__summary {
+                width: 100%;
+            }
+
+            &__dietsTypes {
+                float: left;
+                width: 50%;
+            }
+        }
+    }
+}

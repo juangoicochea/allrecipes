@@ -1,12 +1,9 @@
+@charset "UTF-8";
 .landingPageComponent {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-}
-.landingPageComponent .logo {
-  margin: -50px 0 -70px 0;
-  width: 310px;
 }
 .landingPageComponent button {
   color: #fff;
@@ -35,7 +32,7 @@
 }
 .landingPageComponent section {
   display: flex;
-  width: 1000px;
+  width: 65%;
   height: 480px;
   margin-bottom: 20px;
   border: 10px solid #FFF;
@@ -54,7 +51,28 @@
   opacity: 1;
   filter: contrast(120%);
 }
+.landingPageComponent .logo {
+  margin: 30px 0 15px 0;
+  width: 270px;
+}
 
+@media (max-width: 764px) {
+  .landingPageComponent section {
+    width: 80%;
+    height: 350px;
+    margin-top: 17px;
+  }
+  .landingPageComponent section img:nth-child(4), .landingPageComponent section img:nth-child(5) {
+    display: none;
+  }
+  .landingPageComponent button {
+    padding: 0.475rem 2rem;
+  }
+  .landingPageComponent .logo {
+    width: 250px;
+    margin: 35px 0 5px 0;
+  }
+}
 .cardComponent {
   text-align: left;
   width: 364px;
@@ -121,6 +139,29 @@
   background-color: #b53811;
 }
 
+@media (max-width: 764px) {
+  .homeComponent select {
+    width: 100%;
+    margin-bottom: 7px;
+  }
+  .homeComponent input {
+    width: 80%;
+  }
+  .homeComponent form {
+    display: flex;
+    margin-bottom: 14px;
+  }
+  .homeComponent section {
+    width: 94%;
+  }
+  .homeComponent__boxFilters__left {
+    width: 100%;
+    flex-direction: column;
+  }
+  .homeComponent .search {
+    padding: 0.55rem 0.8rem;
+  }
+}
 .navBarComponent {
   display: flex;
   flex-direction: row;
@@ -153,10 +194,22 @@
   text-decoration: underline;
 }
 .navBarComponent__logo {
-  width: 250px;
+  width: 200px;
   margin: 0 0 0 -50px;
 }
 
+@media (max-width: 764px) {
+  .navBarComponent {
+    flex-direction: column;
+  }
+  .navBarComponent a {
+    margin: 0 25px;
+  }
+  .navBarComponent__logo {
+    width: 170px;
+    margin: 0;
+  }
+}
 .paginateComponent {
   display: grid;
   place-items: center;
@@ -281,6 +334,171 @@
   color: black;
 }
 
+@media (max-width: 764px) {
+  .createRecipeComponent section {
+    width: 94%;
+  }
+  .createRecipeComponent form {
+    width: 90%;
+  }
+  .createRecipeComponent input {
+    width: 80%;
+  }
+  .createRecipeComponent select {
+    width: 92%;
+  }
+  .createRecipeComponent textarea {
+    width: 91%;
+  }
+  .createRecipeComponent__divForm {
+    flex-direction: column;
+    align-items: center;
+    margin: 20px 0;
+  }
+  .createRecipeComponent__divForm div, .createRecipeComponent__divForm span {
+    width: 100%;
+    text-align: center;
+  }
+  .createRecipeComponent__divForm ul {
+    padding-left: 0;
+  }
+  .createRecipeComponent__divForm li {
+    margin: 0 5px;
+    padding: 0 4px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .createRecipeComponent__divForm li span {
+    padding: 0 0 2px 0;
+  }
+}
+.detailComponent h1 {
+  font-size: 3rem;
+  margin-block-start: 0.83em;
+}
+.detailComponent h2 {
+  font-size: 2.25rem;
+}
+.detailComponent section img {
+  max-width: 990px;
+}
+.detailComponent section {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  width: 86%;
+  padding: 40px 7%;
+  background-color: white;
+  flex-direction: column;
+  width: 81%;
+  padding: 40px 4%;
+  margin: 25px auto;
+}
+.detailComponent .returnButton {
+  background: none;
+  border: 0;
+  text-transform: uppercase;
+  font-weight: 700;
+  margin-right: auto;
+  cursor: pointer;
+}
+.detailComponent .returnButton:hover {
+  color: #b53811;
+}
+.detailComponent__info {
+  text-align: left;
+}
+.detailComponent__ranks {
+  text-transform: uppercase;
+  font-size: 0.875rem;
+  font-weight: 700;
+  margin: 15px 0 30px 0;
+}
+.detailComponent__ranks span:first-child {
+  border-right: 1px solid rgba(0, 0, 0, 0.15);
+  padding-right: 17px;
+  margin-right: 17px;
+}
+.detailComponent__ranks .star {
+  color: #d54215;
+}
+.detailComponent__infoHeader {
+  display: flex;
+  justify-content: space-between;
+}
+.detailComponent__infoHeader__summary {
+  width: 70%;
+}
+.detailComponent__infoHeader__dietsTypes {
+  width: 10%;
+}
+.detailComponent__infoHeader__dietsTypes ul {
+  padding-left: 18px;
+}
+.detailComponent__infoFooter ol {
+  list-style-type: decimal;
+  margin-left: 20px;
+}
+.detailComponent__infoFooter ol li::marker {
+  font-size: 3rem;
+  font-weight: 700;
+  content: counter(list-item) "  ";
+}
+.detailComponent__infoFooter ol li {
+  list-style: none;
+  padding: 0;
+  border-bottom: 1px solid rgba(128, 128, 128, 0.1294117647);
+  margin-bottom: 40px;
+}
+.detailComponent__infoFooter__button {
+  color: #fff;
+  background-color: #d54215;
+  padding: 0.775rem 6rem;
+  font-family: SourceSansPro, Helvetica, sans-serif;
+  font-size: 0.875rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  line-height: 1.25rem;
+  text-transform: uppercase;
+  text-underline-offset: 0.25rem;
+  text-decoration: none;
+  cursor: pointer;
+  transition: 0.2s;
+  border-width: 3px;
+  border-style: solid;
+  border-color: #d54215;
+  margin: 30px 30px 0 0;
+}
+.detailComponent__infoFooter__button:hover {
+  background-color: #fff;
+  color: rgba(0, 0, 0, 0.95);
+}
+.detailComponent__infoFooter__button:hover svg {
+  color: #d54215;
+}
+
+@media (max-width: 764px) {
+  .detailComponent section {
+    width: 88%;
+  }
+  .detailComponent section img {
+    width: 100%;
+  }
+  .detailComponent button {
+    padding: 0.475rem 2rem;
+  }
+  .detailComponent__infoHeader {
+    display: block;
+  }
+  .detailComponent__infoHeader__summary {
+    width: 100%;
+  }
+  .detailComponent__infoHeader__dietsTypes {
+    float: left;
+    width: 50%;
+  }
+}
 body {
   font-family: SourceSansPro, Helvetica, sans-serif;
   font-size: 1.125rem;
@@ -297,8 +515,7 @@ body {
 h1 {
   font-family: CopperPot, Helvetica, sans-serif;
   font-size: 2rem;
-  line-height: 2rem;
-  line-height: 2rem;
+  line-height: 3rem;
   margin: 5px 0 0 0;
   text-transform: capitalize;
 }
@@ -314,7 +531,6 @@ h3 {
   font-family: CopperPot, Helvetica, sans-serif;
   font-size: 1.5rem;
   line-height: 2rem;
-  line-height: 2rem;
   margin: 5px 0 0 0;
 }
 h3:hover {
@@ -328,7 +544,6 @@ a {
 input, select {
   font-family: SourceSansPro, Helvetica, sans-serif;
   font-size: 1rem;
-  text-transform: capitalize;
   outline: 0;
   border-right: 0;
   border-radius: 0;
@@ -337,8 +552,22 @@ input, select {
   border: 1px solid rgba(0, 0, 0, 0.65);
 }
 
+select {
+  text-transform: capitalize;
+}
+
 .falseNavBar {
   height: 95px;
+}
+
+.loading img {
+  width: 480px;
+}
+
+@media (max-width: 764px) {
+  input, select {
+    padding: 0.55rem 0.8rem;
+  }
 }
 
 /*# sourceMappingURL=style.css.map */

@@ -3,18 +3,13 @@
 .landingPageComponent {
     @include mixinsfunc.create-flexbox( column, center );
 
-    .logo {
-        margin: -50px 0 -70px 0;
-        width: 310px;
-    }
-
     button {
         @include mixinsfunc.create-button;
     }
     
     section {
         display: flex;
-        width: 1000px;
+        width: 65%;
         height: 480px;
         margin-bottom: 20px;
         border: 10px solid #FFF;
@@ -33,6 +28,34 @@
                 opacity: 1;
                 filter: contrast( 120% );
             }
+        }
+    }
+
+    .logo {
+        margin: 30px 0 15px 0;
+        width: 270px;
+    }
+}
+
+@media ( max-width: 764px ) {
+    .landingPageComponent {
+        section {
+            width: 80%;
+            height: 350px;
+            margin-top: 17px;
+
+            img:nth-child( 4 ), img:nth-child( 5 ) {
+                display: none;
+            }
+        }
+
+        button {
+            padding: 0.475rem 2rem;
+        }
+
+        .logo {
+            width: 250px;
+            margin: 35px 0 5px 0;
         }
     }
 }

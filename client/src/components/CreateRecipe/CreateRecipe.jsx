@@ -110,7 +110,7 @@ export const CreateRecipe = () => {
     }
 
     const handleSelectDishTypes = ( e ) => {
-        if( !input.dishTypes.includes( e.target.value ) ) {
+        if( input.dishTypes.length < 4 && !input.dishTypes.includes( e.target.value ) ) {
             setInput({
                 ...input,
                 dishTypes: [ ...input.dishTypes, e.target.value ]
@@ -123,7 +123,7 @@ export const CreateRecipe = () => {
     }
 
     const handleSelectDiets = ( e ) => {
-        if( !input.diets.find( diet => diet.name === e.target.value ) ) {
+        if( input.diets.length < 4 && !input.diets.find( diet => diet.name === e.target.value ) ) {
             setInput({
                 ...input,
                 diets: [ ...input.diets, { name: e.target.value } ]

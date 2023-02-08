@@ -36,3 +36,38 @@
         }
     }
 }
+
+@media ( max-width: 764px ) {
+    .homeComponent {
+
+        select {
+            width: 100%;
+            margin-bottom: 7px;
+        }
+
+        input {
+            width: 80%;
+        }
+
+        form { 
+            display: flex;
+            margin-bottom: 14px;
+        }
+
+        section {
+            width: 94%;
+        }
+
+        &__boxFilters {
+
+            &__left {
+                width: 100%;
+                flex-direction: column;
+            }
+        }
+
+        .search {
+            padding: 0.55rem 0.8rem;
+        }
+    }
+}

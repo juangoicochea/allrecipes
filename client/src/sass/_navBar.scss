@@ -27,7 +27,22 @@
     }
 
     &__logo {
-        width: 250px;
+        width: 200px;
         margin: 0 0 0 -50px;
+    }
+}
+
+@media ( max-width: 764px ) {
+    .navBarComponent {
+        flex-direction: column;
+        
+        a {
+            margin: 0 25px;
+        }
+
+        &__logo {
+            width: 170px;
+            margin: 0;
+        }    
     }
 }
