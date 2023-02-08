@@ -2,7 +2,7 @@ import axios from 'axios';
 
 export const getRecipes = () => {
     return async ( dispatch ) => {
-        const json = await axios( 'http://localhost:3001/recipes' );
+        const json = await axios( '/recipes' );
         dispatch({
             type: 'GET_RECIPES',
             payload: json.data
@@ -12,7 +12,7 @@ export const getRecipes = () => {
 
 export const getDiets = () => {
     return async ( dispatch ) => {
-        const json = await axios( 'http://localhost:3001/diets' );
+        const json = await axios( '/diets' );
         dispatch({
             type: 'GET_DIETS',
             payload: json.data
@@ -44,7 +44,7 @@ export const orderBy = ( payload ) => {
 export const searchByName = ( payload ) => {
     return async ( dispatch ) => {
         try {
-            const json = await axios(`http://localhost:3001/recipes?title=${ payload }`);
+            const json = await axios(`/recipes?title=${ payload }`);
             dispatch({
                 type: 'SEARCH_BY_NAME',
                 payload: json.data
@@ -60,7 +60,7 @@ export const searchByName = ( payload ) => {
 
 export const getRecipeDetail = ( id ) => {
     return async ( dispatch ) => {
-        const json = await axios(`http://localhost:3001/recipes/${ id }`);
+        const json = await axios(`/recipes/${ id }`);
         dispatch({
             type: 'GET_DETAIL',
             payload: json.data
@@ -70,21 +70,21 @@ export const getRecipeDetail = ( id ) => {
 
 export const postRecipe = ( payload ) => {
     return async () => {
-        const json = await axios.post( 'http://localhost:3001/recipes', payload );
+        const json = await axios.post( '/recipes', payload );
         return json;
     }
 }
 
 export const updateRecipe = ( id, data ) => {
     return async () => {
-        const json = await axios.put( `http://localhost:3001/recipes/${ id }`, data );
+        const json = await axios.put( `/recipes/${ id }`, data );
         return json;
     }
 }
 
 export const deleteRecipe = ( id ) => {
     return async () => {
-        const json = await axios.delete( `http://localhost:3001/recipes/${ id }` );
+        const json = await axios.delete( `/recipes/${ id }` );
         return json;
     }
 }
