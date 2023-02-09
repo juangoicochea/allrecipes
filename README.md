@@ -1,6 +1,6 @@
 # AllRecipes - Recipes App
 
-<img src="https://user-images.githubusercontent.com/84482789/217907376-cdab36cc-53c3-4eec-8931-8f1a5a3aeb68.jpg" width="90%"></img> 
+<img src="https://user-images.githubusercontent.com/84482789/217907376-cdab36cc-53c3-4eec-8931-8f1a5a3aeb68.jpg" width="93%"></img> 
 <img src="https://user-images.githubusercontent.com/84482789/217907381-4a926ccf-b125-4348-8895-cabd67c998fb.jpg" width="30%"></img> 
 <img src="https://user-images.githubusercontent.com/84482789/217907384-1336b0cc-5053-4310-b960-811e94c1f1ab.jpg" width="30%"></img> 
 <img src="https://user-images.githubusercontent.com/84482789/217907386-a7887f68-6c88-472c-9d65-89856e9bf466.jpg" width="30%"></img> 
