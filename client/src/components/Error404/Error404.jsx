@@ -7,7 +7,7 @@ export const Error404 = () => {
         <NavBar />
         <div>
             <h1>Whoops! Error 404</h1>
-            <p>The info you're looking for can't be found! </p>
+            <p>The info you're looking for can't be found!</p>
             <p>You might want to try searching again or go back home.</p>
             <div><Link to='/home'><button>Home</button></Link></div>  
         </div>
