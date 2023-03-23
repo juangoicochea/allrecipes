@@ -1,5 +1,15 @@
 # AllRecipes - Recipes App
 
+<img src="https://user-images.githubusercontent.com/84482789/217907376-cdab36cc-53c3-4eec-8931-8f1a5a3aeb68.jpg" width="91%"></img> 
+<img src="https://user-images.githubusercontent.com/84482789/217907381-4a926ccf-b125-4348-8895-cabd67c998fb.jpg" width="30%"></img> 
+<img src="https://user-images.githubusercontent.com/84482789/217907384-1336b0cc-5053-4310-b960-811e94c1f1ab.jpg" width="30%"></img> 
+<img src="https://user-images.githubusercontent.com/84482789/217907386-a7887f68-6c88-472c-9d65-89856e9bf466.jpg" width="30%"></img> 
+<img src="https://user-images.githubusercontent.com/84482789/217907389-9d8b73ec-304e-4311-b05c-f8a6165f3bf7.jpg" width="30%"></img> 
+<img src="https://user-images.githubusercontent.com/84482789/217907391-b39ebfe1-46c1-4728-819c-f140ebd97b5b.jpg" width="30%"></img> 
+<img src="https://user-images.githubusercontent.com/84482789/217907392-4e2ab1f2-0433-4371-a46e-ba36793b7cde.jpg" width="30%"></img> 
+<img src="https://user-images.githubusercontent.com/84482789/217907394-a254f59d-e2cb-4787-ba94-99b6a6f32079.jpg" width="30%"></img> 
+<img src="https://user-images.githubusercontent.com/84482789/217907396-21dae1fe-db04-4bdf-8bcf-0173143a1fc8.jpg" width="30%"></img> 
+
 ## 📝Description:
 
 Design and develop a Recipes App that included: connection to external API, searches, filtering, ordering, creation, deletion and editing.
